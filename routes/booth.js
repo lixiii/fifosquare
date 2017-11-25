@@ -14,7 +14,8 @@ exports.createBooth = function (req, res) {
   var booth = new Booth({
     boothname: req.body.boothname,
     password: req.body.password,
-    email: req.body.email
+    email: req.body.email,
+    qblksize : req.body.qblksize
   });
 
   // delay execution to prevent brute force attacks
