@@ -1,9 +1,11 @@
-
 data = [
     { "Booth": "something", "QLength": 10 },
     { "Booth": "another", "QLength": 15 },
     { "Booth": "also", "QLength": 20 }
 ]
+
+hottest = ["something", "another", "hot"]
+least = ["something", "another", "hot"]
 
 function tabulate(data, columns) {
     var table = d3.select('#chart').append('table').attr('class', "table table-striped u-table--v1 mb-0")
@@ -37,5 +39,24 @@ function tabulate(data, columns) {
     return table;
 }
 
-// render the table(s)
+function displayhottest(hottest) {
+    var text = ""
+    for (var i = 0; i < hottest.length; i++) {
+        text += "<span class=\"u-label u-label-default g-mr-10 g-mb-15\">" + hottest[i] + "</span>";
+    }
+    $("#hottest").html(text);
+}
+
+function displayleast(least) {
+    var text = ""
+    for (var i = 0; i < hottest.length; i++) {
+        text += "<span class=\"u-label u-label-default g-mr-10 g-mb-15\">" + hottest[i] + "</span>";
+    }
+    $("#least").html(text);
+}
+
+
+
 tabulate(data, ['Booth', 'QLength']); // 2 column table
+displayhottest(hottest);
+displayleast(least);
