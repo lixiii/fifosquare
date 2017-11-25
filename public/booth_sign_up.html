@@ -53,30 +53,37 @@
               </header>
 
               <!-- Form -->
-              <form class="g-py-15">
+              <form id="booth" class="g-py-15">
                 <div class="mb-4">
                   <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-primary--hover rounded g-py-15 g-px-15"
-                    type="text" placeholder="Booth Name">
+                    type="text" placeholder="Booth Name" name="boothname">
                 </div>
 
                 <div class="mb-4">
                   <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-primary--hover rounded g-py-15 g-px-15"
-                    type="email" placeholder="boothname@event.com">
+                    type="email" placeholder="boothname@event.com" name="email">
                 </div>
 
                 <div class="g-mb-30">
                   <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-primary--hover rounded g-py-15 g-px-15"
-                    type="tel" placeholder="Password">
+                    type="tel" placeholder="Password" name="password">
                 </div>
 
                 <div class="g-mb-30">
                   <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-primary--hover rounded g-py-15 g-px-15"
-                    type="qblk" placeholder="Service Cpacity">
+                    type="qblk" placeholder="Service Cpacity" name="qblksize">
                 </div>
 
                 <div class="text-center mb-5">
                   <button class="btn btn-block u-btn-primary rounded g-py-13" type="button">Sign Up</button>
                 </div>
+
+                <script>
+                  function submitBooth() {
+                      document.getElementById("booth").submit();
+                  }
+                </script>
+                
               </form>
               <!-- End Form -->
 
