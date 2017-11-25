@@ -4,23 +4,21 @@ var bcrypt = require('bcrypt-nodejs');
 
 // Define booth schema
 var BoothSchema = new mongoose.Schema({
-  boothname: {
-    type: String,
-    unique: true,
-    required: true
-  },
+  boothname: String,
   password: {
     type: String,
     required: true
   },
   email :{
     type: String,
+    unique: true,
     required: true
   },
   qblksize : {
     type : Number,
-    required : true
-  }
+    required : false
+  },
+  phoneNumber: String
 });
 
 // Execute before each booth.save() call

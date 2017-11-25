@@ -11,8 +11,6 @@ exports.createBooth = function (req, res) {
     return res.send(400, { message: "Email is invalid.", errorcode: "EMAIL_INVALID" });
   }
 
-  var hash = crypto.randomBytes(30).toString('hex');
-
   var booth = new Booth({
     boothname: req.body.boothname,
     password: req.body.password,
