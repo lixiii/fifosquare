@@ -6,4 +6,4 @@ To start server, run `sudo npm start`
 
 | API URL | API Call type | Expected data structure |
 | -------- | ------ | ------------ |
-| `/example` | GET | {username: String, password: String}
+| `/example` | GET | {username: String, password: String} | 
