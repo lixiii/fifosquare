@@ -1,5 +1,5 @@
 // Load required packages
-var Booth = require('../../models/booth');
+var Booth = require('../models/booth');
 const crypto = require('crypto');
 /**
  * Create endpoint /api/booth for POST
@@ -14,8 +14,7 @@ exports.createBooth = function (req, res) {
   var booth = new Booth({
     boothname: req.body.boothname,
     password: req.body.password,
-    email: req.body.email,
-    qblksize : req.body.qblksize,
+    email: req.body.email
   });
 
   // delay execution to prevent brute force attacks
@@ -31,30 +30,34 @@ exports.createBooth = function (req, res) {
             return res.status(500).send(err);
 
           req.login(booth, (err) => console.log(err));
-          return res.json({ message: 'New booth added to the event!' });
+          return res.json({ message: 'New booth manager created' });
         });
       }
     });
   })
 };
 
-// Create endpoint /api/users for GET
+// Create endpoint /api/booths for GET
 exports.getBooths = function (req, res) {
+
   Booth.find(function (err, booths) {
     if (err)
       return res.send(err);
 
-    res.json(booths);
+    res.json( booths.map( x => x.boothname ) );
   });
+
 };
 
-exports.getBooth = function (req, res) {
-  if (!req.isAuthenticated()) return res.sendStatus(401);
-  Booth.findOne({ boothname: req.booth.boothname }, function (err, booth) {
-    if (err) res.status(500).send(err);
-    else res.json(booth);
-  });
-}
+
+// exports.getBooth = function (req, res) {
+
+//   Booth.findOne({ boothname: req.booth.boothname }, function (err, booth) {
+//     if (err) res.status(500).send(err);
+//     else res.json(booth);
+//   });
+
+// }
 
 
 function validateEmail(email) {
