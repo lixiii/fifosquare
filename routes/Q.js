@@ -4,6 +4,7 @@ function Q() {
   this.enQ = function(req, res) {
     var entry = {
       user: req.body.user,
+      phone: req.body.phone,
       time: new Date(),
     }
     this.Q.push(entry);
