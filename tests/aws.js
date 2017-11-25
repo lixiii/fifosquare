@@ -4,9 +4,13 @@ var awsController = require("../routes/aws")
 //   console.log(data);
 // });
 
-awsController.publish("+447543279250", "test", function(data) {
-  if (data !== null) {
-    console.log('congrats');
-    console.log(data)
-  }
-});
+var num = ["+447756778027", "+447397307339"]
+
+num.forEach(num => {
+  awsController.publish(num, "Thank you very much", function(data) {
+    if (data !== null) {
+      console.log('sent');
+      console.log(data)
+    }
+  });
+}); 
