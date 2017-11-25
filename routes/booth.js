@@ -7,6 +7,7 @@ const crypto = require('crypto');
  */
 exports.createBooth = function (req, res) {
   // validate email
+  console.log(req.body);
   if (!validateEmail(req.body.email)) {
     return res.send(400, { message: "Email is invalid.", errorcode: "EMAIL_INVALID" });
   }

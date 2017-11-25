@@ -59,11 +59,11 @@
                 </div>
 
                 <div class="g-mb-30">
-                  <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-primary--hover rounded g-py-15 g-px-15" type="tel" placeholder="Password" id="input_password">
+                  <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-primary--hover rounded g-py-15 g-px-15" type="password" placeholder="Password" id="input_password">
                 </div>
 
                 <div class="g-mb-30">
-                  <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-primary--hover rounded g-py-15 g-px-15" type="qblk" placeholder="Service Cpacity" id="input_qblksize">
+                  <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-primary--hover rounded g-py-15 g-px-15" type="number" placeholder="Service Cpacity" id="input_qblksize">
                 </div>
 
                 <div class="text-center mb-5">
@@ -172,18 +172,43 @@
 
 <!-- JS Plugins Init. -->
 <script>
-  $( "#boothSubmit" ).on("click", function(){
-    input_boothname = $("#input_boothname").val();      
-    input_email = $("#input_email").val();
-    input_password = $("#input_password").val();
-    input_qblksize = $("#input_qblksize").val();
-  })
   $( document ).on( 'ready', function() {
     // initialization of tabs
     $.HSCore.components.HSTabs.init( '[role="tablist"]' );
 
     // initialization of go to
     $.HSCore.components.HSGoTo.init( '.js-go-to' );
+
+    // crowculus
+    $( "#boothSubmit" ).on("click", function(){
+      input_boothname = $("#input_boothname").val(); 
+      if(input_boothname == "") swal("Oooops", "You need to fill in everything!", "warning");
+      input_email = $("#input_email").val();
+      if(input_email == "") swal("Oooops", "You need to fill in everything!", "warning");    
+      input_password = $("#input_password").val();
+      if(input_password == "") swal("Oooops", "You need to fill in everything!", "warning");
+      input_qblksize = $("#input_qblksize").val();
+      if(input_qblksize == "") swal("Oooops", "You need to fill in everything!", "warning");
+
+      //submit and validate
+      $.ajax("/api/booth", {
+        method: "POST",
+        data: {
+          boothname: input_boothname,
+          password: input_password,
+          email: input_email,
+          qblksize: input_qblksize
+        }
+      }).done(function(){
+        localStorage.setItem('boothname', input_boothname);
+        localStorage.setItem('authenticated', true);
+        window.location.replace( "/booth.html" );
+      }).fail( function( data ){
+        swal("Ooooops!", data.responseJSON.message, "error");
+        console.log(data);
+      });
+    });
+
   } );
 
   $( window ).on( 'load', function() {
