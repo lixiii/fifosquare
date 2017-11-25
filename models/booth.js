@@ -18,7 +18,6 @@ var BoothSchema = new mongoose.Schema({
     type : Number,
     required : false
   },
-  phoneNumber: String
 });
 
 // Execute before each booth.save() call
