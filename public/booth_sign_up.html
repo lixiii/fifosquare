@@ -35,15 +35,11 @@
   <link rel="stylesheet" href="./assets/css/custom.css">
 </head>
 
-<body>
+<body class = "bg-black">
   <main>
 
     <!-- Login -->
     <section class="dzsparallaxer auto-init height-is-based-on-content use-loading mode-scroll loaded dzsprx-readyall" data-options="{direction: 'reverse', settings_mode_oneelement_max_offset: '150'}">
-      <!-- Parallax Image -->
-      <div class="divimage dzsparallaxer--target w-100 u-bg-overlay g-bg-size-cover g-bg-bluegray-opacity-0_3--after" style="height: 140%; background-image: url(./assets/img-temp/1920x1080/img2.jpg);"></div>
-      <!-- End Parallax Image -->
-
       <div class="container g-pt-100 g-pb-20">
         <div class="row justify-content-between">
           <div class="col-md-6 col-lg-5 flex-md-unordered align-self-center g-mb-80">
@@ -55,19 +51,19 @@
               <!-- Form -->
               <form id="booth" class="g-py-15">
                 <div class="mb-4">
-                  <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-primary--hover rounded g-py-15 g-px-15" type="text" placeholder="Booth Name" name="boothname">
+                  <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-primary--hover rounded g-py-15 g-px-15" type="text" placeholder="Booth Name" id="input_boothname">
                 </div>
 
                 <div class="mb-4">
-                  <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-primary--hover rounded g-py-15 g-px-15" type="email" placeholder="boothname@event.com" name="email">
+                  <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-primary--hover rounded g-py-15 g-px-15" type="email" placeholder="boothname@event.com" id="input_email">
                 </div>
 
                 <div class="g-mb-30">
-                  <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-primary--hover rounded g-py-15 g-px-15" type="tel" placeholder="Password" name="password">
+                  <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-primary--hover rounded g-py-15 g-px-15" type="tel" placeholder="Password" id="input_password">
                 </div>
 
                 <div class="g-mb-30">
-                  <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-primary--hover rounded g-py-15 g-px-15" type="qblk" placeholder="Service Cpacity" name="qblksize">
+                  <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-primary--hover rounded g-py-15 g-px-15" type="qblk" placeholder="Service Cpacity" id="input_qblksize">
                 </div>
 
                 <div class="text-center mb-5">
@@ -176,6 +172,12 @@
 
 <!-- JS Plugins Init. -->
 <script>
+  $( "#boothSubmit" ).on("click", function(){
+    input_boothname = $("#input_boothname").val();      
+    input_email = $("#input_email").val();
+    input_password = $("#input_password").val();
+    input_qblksize = $("#input_qblksize").val();
+  })
   $( document ).on( 'ready', function() {
     // initialization of tabs
     $.HSCore.components.HSTabs.init( '[role="tablist"]' );
