@@ -50,6 +50,8 @@ router.get('/booths', boothRoutes.getBooths);
 router.put('/queue', QRoutes.enQ);
 router.delete('/queue', QRoutes.deQ);
 
+router.get("/hottest", QRoutes.hottest);
+
 
 // Serve static contents and Start the server
 app.get("/*", function(req, res, next) {
