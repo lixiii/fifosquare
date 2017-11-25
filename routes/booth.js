@@ -1,11 +1,28 @@
 // Load required packages
-var Booth = require('../models/booth');
+var express = require("express"),
+    router = express.Router(),
+    passport = require("passport"),
+    Booth = require('../models/booth');
 const crypto = require('crypto');
-/**
- * Create endpoint /api/booth for POST
- * @export
- */
-exports.createBooth = function (req, res) {
+
+//private interface
+router.get("/booth/fail", function(req,res){
+  res.json({"LoggedIn":false});
+})
+
+router.get("/booth/success", function(req,res){
+  res.json({"LoggedIn":true});
+})
+
+//Login route
+router.post("/booth/login", passport.authenticate("local", {
+  successRedirect: "/booth/success",
+  failureRedirect: "/booth/fail"
+}), function(req, res){
+});
+
+//Create route
+router.post("/booth/create", function (req, res) {
   // validate email
   console.log(req.body);
   if (!validateEmail(req.body.email)) {
@@ -40,12 +57,10 @@ exports.createBooth = function (req, res) {
 };
 
 // Create endpoint /api/booths for GET
-exports.getBooths = function (req, res) {
-
+router.get("/booth/all", function (req, res) {
   Booth.find(function (err, booths) {
     if (err)
       return res.send(err);
-
     res.json( booths.map( x => x.boothname ) );
   });
 
@@ -60,7 +75,12 @@ exports.getBooths = function (req, res) {
 //   });
 
 // }
-
+function isLoggedIn(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  res.satus(401).json({"isLoggedIn":false});
+}
 
 function validateEmail(email) {
   var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;

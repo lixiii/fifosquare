@@ -56,6 +56,7 @@ function initialisePassport(app) {
   // initialise passport
   var session = require("express-session");
   var passport = require("passport");
+  var localStrategy = require("passport-local");
   var expressSession = require("express-session");
   var Booth = require("./models/booth");
   // Use the passport package in our application
@@ -70,6 +71,12 @@ function initialisePassport(app) {
   app.use(passport.initialize());
   app.use(passport.session());
 
+  passport.use(new localStrategy({
+      usernameField: "boothname",
+      passwordField: "password"
+      },
+      Booth.authenticate()));
+      
   // save passport sessions
   // used to serialize the user for the session
   passport.serializeUser(function(user, done) {
