@@ -39,7 +39,14 @@ router.post('/booth', boothRoutes.createBooth);
 router.get('/booths', boothRoutes.getBooths);
 
 
-// Start the server
+// Serve static contents and Start the server
+app.get("/*", function(req, res, next) {
+  var uid = req.params.uid,
+      path = req.params[0] ? req.params[0] : "index.html";
+  //Development mode
+  res.sendFile(path, { root: "public" });
+  //next();
+});
 app.listen(80);
 
 
