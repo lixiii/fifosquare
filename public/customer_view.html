@@ -10,6 +10,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
 
+  <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+
   <!-- Favicon -->
   <link rel="shortcut icon" href="../../favicon.ico">
   <!-- Google Fonts -->
@@ -57,17 +59,20 @@
         <div class="col-lg-9">
           <div class="g-mb-60">
             <h2 class="g-color-black g-font-weight-600 text-center g-mb-30">Hottest Booths</h2>
-            <p><span class="d-inline-block float-left g-width-60 g-height-60 g-color-black g-font-weight-600 g-font-size-30 text-center g-pa-7 mr-2"></span>placeholder</p>
+            <p>
+              <span class="d-inline-block float-left g-width-60 g-height-60 g-color-black g-font-weight-600 g-font-size-30 text-center g-pa-7 mr-2"></span>placeholder</p>
           </div>
 
           <div class="g-mb-60">
             <h2 class="g-color-black g-font-weight-600 text-center g-mb-30">No Queue</h2>
-            <p><span class="d-inline-block float-left g-width-60 g-height-60 g-color-black g-font-weight-600 g-font-size-30 text-center g-pa-7 mr-2"></span>placeholder</p>
+            <p>
+              <span class="d-inline-block float-left g-width-60 g-height-60 g-color-black g-font-weight-600 g-font-size-30 text-center g-pa-7 mr-2"></span>placeholder</p>
           </div>
 
-          <div class="g-mb-60">
+          <div class="g-mb-60" id = "chart">
             <h2 class="g-color-black g-font-weight-600 text-center g-mb-30">All booths</h2>
-            <p><span class="d-inline-block float-left g-width-60 g-height-60 g-color-black g-font-weight-600 g-font-size-30 text-center g-pa-7 mr-2"></span>placeholder</p>
+            <p id="centre_text">
+                <span class="d-inline-block float-left g-width-60 g-height-60 g-color-black g-font-weight-600 g-font-size-30 text-center g-pa-7 mr-2"></span>Here's a list of all participating booths and their numbers waiting.</p>
           </div>
         </div>
       </div>
@@ -110,42 +115,37 @@
   <!-- JS Plugins Init. -->
   <script>
     $(document).on('ready', function () {
-        // initialization of tabs
+      // initialization of tabs
+      $.HSCore.components.HSTabs.init('[role="tablist"]');
+
+      // initialization of popups
+      $.HSCore.components.HSPopup.init('.js-fancybox');
+
+      // initialization of go to
+      $.HSCore.components.HSGoTo.init('.js-go-to');
+    });
+
+    $(window).on('load', function () {
+      // initialization of header
+      $.HSCore.components.HSHeader.init($('#js-header'));
+      $.HSCore.helpers.HSHamburgers.init('.hamburger');
+
+      // initialization of HSMegaMenu component
+      $('.js-mega-menu').HSMegaMenu({
+        event: 'hover',
+        pageContainer: $('.container'),
+        breakpoint: 991
+      });
+    });
+
+    $(window).on('resize', function () {
+      setTimeout(function () {
         $.HSCore.components.HSTabs.init('[role="tablist"]');
-
-        // initialization of popups
-        $.HSCore.components.HSPopup.init('.js-fancybox');
-
-        // initialization of go to
-        $.HSCore.components.HSGoTo.init('.js-go-to');
-      });
-
-      $(window).on('load', function () {
-        // initialization of header
-        $.HSCore.components.HSHeader.init($('#js-header'));
-        $.HSCore.helpers.HSHamburgers.init('.hamburger');
-
-        // initialization of HSMegaMenu component
-        $('.js-mega-menu').HSMegaMenu({
-          event: 'hover',
-          pageContainer: $('.container'),
-          breakpoint: 991
-        });
-      });
-
-      $(window).on('resize', function () {
-        setTimeout(function () {
-          $.HSCore.components.HSTabs.init('[role="tablist"]');
-        }, 200);
-      });
+      }, 200);
+    });
   </script>
 
-
-
-
-
-
-
+  <script type='text/javascript' src='display_table.js'></script>
 </body>
 
 </html>
