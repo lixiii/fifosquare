@@ -55,35 +55,25 @@
               <!-- Form -->
               <form id="booth" class="g-py-15">
                 <div class="mb-4">
-                  <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-primary--hover rounded g-py-15 g-px-15"
-                    type="text" placeholder="Booth Name" name="boothname">
+                  <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-primary--hover rounded g-py-15 g-px-15" type="text" placeholder="Booth Name" name="boothname">
                 </div>
 
                 <div class="mb-4">
-                  <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-primary--hover rounded g-py-15 g-px-15"
-                    type="email" placeholder="boothname@event.com" name="email">
+                  <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-primary--hover rounded g-py-15 g-px-15" type="email" placeholder="boothname@event.com" name="email">
                 </div>
 
                 <div class="g-mb-30">
-                  <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-primary--hover rounded g-py-15 g-px-15"
-                    type="tel" placeholder="Password" name="password">
+                  <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-primary--hover rounded g-py-15 g-px-15" type="tel" placeholder="Password" name="password">
                 </div>
 
                 <div class="g-mb-30">
-                  <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-primary--hover rounded g-py-15 g-px-15"
-                    type="qblk" placeholder="Service Cpacity" name="qblksize">
+                  <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-primary--hover rounded g-py-15 g-px-15" type="qblk" placeholder="Service Cpacity" name="qblksize">
                 </div>
 
                 <div class="text-center mb-5">
-                  <button class="btn btn-block u-btn-primary rounded g-py-13" type="button">Sign Up</button>
+                  <button class="btn btn-block u-btn-primary rounded g-py-13" type="button" id="boothSubmit">Sign Up</button>
                 </div>
 
-                <script>
-                  function submitBooth() {
-                      document.getElementById("booth").submit();
-                  }
-                </script>
-                
               </form>
               <!-- End Form -->
 
@@ -132,8 +122,7 @@
                 <!-- Testimonials -->
                 <blockquote class="u-blockquote-v1 g-color-main rounded g-pl-60 g-pr-30 g-py-25 g-mb-40">Easy booth setup here.</blockquote>
                 <div class="media">
-                  <img class="d-flex align-self-center rounded-circle g-width-40 g-height-40 mr-3" src="./assets/img-temp/100x100/img12.jpg"
-                    alt="Image Description">
+                  <img class="d-flex align-self-center rounded-circle g-width-40 g-height-40 mr-3" src="./assets/img-temp/100x100/img12.jpg" alt="Image Description">
                   <div class="media-body align-self-center">
                     <h4 class="h6 g-color-primary g-font-weight-600 g-mb-0">FIFO Square</h4>
                     <em class="g-color-white g-font-style-normal g-font-size-12">Web Development Startup</em>
@@ -158,59 +147,59 @@
 
   <div class="u-outer-spaces-helper"></div>
 
-
   <!-- JS Global Compulsory -->
   <script src="./assets/vendor/jquery/jquery.min.js"></script>
   <script src="./assets/vendor/jquery-migrate/jquery-migrate.min.js"></script>
   <script src="./assets/vendor/jquery.easing/js/jquery.easing.js"></script>
   <script src="./assets/vendor/popper.min.js"></script>
   <script src="./assets/vendor/bootstrap/bootstrap.min.js"></script>
-
+  
   <!-- JS Implementing Plugins -->
   <script src="./assets/vendor/hs-megamenu/src/hs.megamenu.js"></script>
   <script src="./assets/vendor/dzsparallaxer/dzsparallaxer.js"></script>
   <script src="./assets/vendor/dzsparallaxer/dzsscroller/scroller.js"></script>
   <script src="./assets/vendor/dzsparallaxer/advancedscroller/plugin.js"></script>
-
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  
   <!-- JS Unify -->
   <script src="./assets/js/hs.core.js"></script>
   <script src="./assets/js/components/hs.header.js"></script>
   <script src="./assets/js/helpers/hs.hamburgers.js"></script>
   <script src="./assets/js/components/hs.tabs.js"></script>
   <script src="./assets/js/components/hs.go-to.js"></script>
-
+  
   <!-- JS Customization -->
   <script src="./assets/js/custom.js"></script>
-
-  <!-- JS Plugins Init. -->
-  <script>
-    $(document).on('ready', function () {
-      // initialization of tabs
-      $.HSCore.components.HSTabs.init('[role="tablist"]');
-
-      // initialization of go to
-      $.HSCore.components.HSGoTo.init('.js-go-to');
-    });
-
-    $(window).on('load', function () {
-      // initialization of header
-      $.HSCore.components.HSHeader.init($('#js-header'));
-      $.HSCore.helpers.HSHamburgers.init('.hamburger');
-
-      // initialization of HSMegaMenu component
-      $('.js-mega-menu').HSMegaMenu({
-        event: 'hover',
-        pageContainer: $('.container'),
-        breakpoint: 991
-      });
-    });
-
-    $(window).on('resize', function () {
-      setTimeout(function () {
-        $.HSCore.components.HSTabs.init('[role="tablist"]');
-      }, 200);
-    });
-  </script>
 </body>
 
 </html>
+
+<!-- JS Plugins Init. -->
+<script>
+  $( document ).on( 'ready', function() {
+    // initialization of tabs
+    $.HSCore.components.HSTabs.init( '[role="tablist"]' );
+
+    // initialization of go to
+    $.HSCore.components.HSGoTo.init( '.js-go-to' );
+  } );
+
+  $( window ).on( 'load', function() {
+    // initialization of header
+    $.HSCore.components.HSHeader.init( $( '#js-header' ) );
+    $.HSCore.helpers.HSHamburgers.init( '.hamburger' );
+
+    // initialization of HSMegaMenu component
+    $( '.js-mega-menu' ).HSMegaMenu( {
+      event: 'hover',
+      pageContainer: $( '.container' ),
+      breakpoint: 991
+    } );
+  } );
+
+  $( window ).on( 'resize', function() {
+    setTimeout( function() {
+      $.HSCore.components.HSTabs.init( '[role="tablist"]' );
+    }, 200 );
+  } );
+</script>
