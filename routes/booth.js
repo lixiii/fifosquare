@@ -22,7 +22,7 @@ router.post("/booth/login", passport.authenticate("local", {
 });
 
 //Create route
-router.post("/booth/create", function (req, res) {
+router.post("/booth", function (req, res) {
   // validate email
   console.log(req.body);
   if (!validateEmail(req.body.email)) {
@@ -54,17 +54,17 @@ router.post("/booth/create", function (req, res) {
       }
     });
   })
-};
+});
 
 // Create endpoint /api/booths for GET
-router.get("/booth/all", function (req, res) {
+router.get("/booths", function (req, res) {
   Booth.find(function (err, booths) {
     if (err)
       return res.send(err);
     res.json( booths.map( x => x.boothname ) );
   });
 
-};
+});
 
 
 // exports.getBooth = function (req, res) {

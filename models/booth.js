@@ -1,6 +1,7 @@
 // Load required packages
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt-nodejs');
+var passportLocalMongoose = require("passport-local-mongoose");
 
 // Define booth schema
 var BoothSchema = new mongoose.Schema({
@@ -48,6 +49,6 @@ BoothSchema.methods.verifyPassword = function(password, cb) {
     cb(null, isMatch);
   });
 };
-
+BoothSchema.plugin(passportLocalMongoose);
 // Export the Mongoose model
 module.exports = mongoose.model('Booth', BoothSchema);
