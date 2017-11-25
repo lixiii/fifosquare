@@ -1,19 +1,21 @@
-var app = require('express')();
-var server = require('http').Server(app);
-var io = require('socket.io')(server);
-// var mongoose = require('mongoose');
+var express = require('express');
+var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
+var Booth = require('./models/booth');
 
+var app = express();
+app.use(bodyParser.urlencoded({
+    extended: true
+  }));
 
-server.listen(80);
+var router = express.Router();
 
-app.get('/', function (req, res) {
-  res.send(200)
-});
+// Register all our routes with /api
+app.use('/api', router);
 
-io.on('connection', function (socket) {
-  socket.emit('news', { hello: 'world' });
-  socket.on('my other event', function (data) {
-    console.log(data);
-  });
-});
+// Start the server
+app.listen(80);
+
+var boothRoutes = require("./routes/booth");
+
+router.route('/booth', boothRoutes.creatBooth);
