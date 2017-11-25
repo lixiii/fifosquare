@@ -5,6 +5,7 @@ function Q() {
     var entry = {
       user: req.body.user,
       phone: req.body.phone,
+      groupsize : req.body.groupsize,
       time: new Date(),
     }
     this.Q.push(entry);

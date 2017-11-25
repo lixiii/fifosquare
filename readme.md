@@ -20,4 +20,4 @@ To start server, run `sudo npm start`
 | -------- | ------ | ------------ |
 | `/example` | GET | {username: String, password: String} | 
 | `/models/booth.js` | GET | {boothname: String, password: String, email: String, qblksize: Number} |
-| `/routes/Q.js` | PUT | {user: String, phone: String} |
+| `/routes/Q.js` | PUT | {user: String, phone: String, groupsize: Number} |
