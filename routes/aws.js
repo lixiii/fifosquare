@@ -34,7 +34,7 @@ exports.publish = function( number, message, next ){
 exports.initAttributes = function (next) {
   var params = {
     attributes: { /* required */
-      'DefaultSenderID': 'FIFO_Square'
+      'DefaultSenderID': 'Crowdculus'
     }
   };
   sns.setSMSAttributes(params, function(err, data) {
