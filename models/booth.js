@@ -49,6 +49,6 @@ BoothSchema.methods.verifyPassword = function(password, cb) {
     cb(null, isMatch);
   });
 };
-userSchema.plugin(passportLocalMongoose);
+BoothSchema.plugin(passportLocalMongoose);
 // Export the Mongoose model
 module.exports = mongoose.model('Booth', BoothSchema);
