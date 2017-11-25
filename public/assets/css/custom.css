@@ -3,3 +3,16 @@
 .bg-black {
   background-color: #1c1a17;
 }
+
+#centre_text {
+  text-align: center;
+}
+
+table {
+  width: 100%;
+}
+
+th, td {
+  height: 50px;
+  text-align: center;
+}
