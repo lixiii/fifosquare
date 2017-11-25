@@ -1,8 +1,10 @@
-var express = require('express');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var morgan = require('morgan');
-var boothRoutes = require("./routes/booth");
+var express = require('express');
+var app = express();
+var server = require('http').Server(app);
+var io = require('socket.io')(server);
 
 
 /**
@@ -13,7 +15,6 @@ var boothRoutes = require("./routes/booth");
 mongoose.connect('mongodb://localhost:27017/crowdculus');
 mongoose.Promise = Promise;
 
-var app = express();
 // add logging
 app.use(morgan('tiny'))
 
@@ -27,16 +28,27 @@ app.use(
 
 initialisePassport(app);
 
+// record of all the event booths and instances of the Qs
+var boothController = require("./models/controllers/booth");
+var masterBoothLedger = require("./models/masterBoothLedger");
+boothController.initialiseLedger( masterBoothLedger, io );
+
+
 
 /**
  * Routes
  */
 var router = express.Router();
+var boothRoutes = require("./routes/booth");
+var QRoutes = require("./routes/Q");
 // Register all our routes with /api
 app.use('/api', router);
 
 router.post('/booth', boothRoutes.createBooth);
 router.get('/booths', boothRoutes.getBooths);
+
+router.put('/queue', QRoutes.enQ);
+router.delete('/queue', QRoutes.deQ);
 
 
 // Serve static contents and Start the server
@@ -47,7 +59,8 @@ app.get("/*", function(req, res, next) {
   res.sendFile(path, { root: "public" });
   //next();
 });
-app.listen(80);
+
+server.listen(80);
 
 
 

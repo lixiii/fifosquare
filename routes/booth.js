@@ -51,17 +51,6 @@ exports.getBooths = function (req, res) {
 
 };
 
-
-// exports.getBooth = function (req, res) {
-
-//   Booth.findOne({ boothname: req.booth.boothname }, function (err, booth) {
-//     if (err) res.status(500).send(err);
-//     else res.json(booth);
-//   });
-
-// }
-
-
 function validateEmail(email) {
   var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   return re.test(email);

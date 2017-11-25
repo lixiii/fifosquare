@@ -52,16 +52,16 @@
               <form id="booth" class="g-py-15">
                 <div class="mb-4">
                   <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-primary--hover rounded g-py-15 g-px-15"
-                    type="text" placeholder="Booth Name" name="boothname">
+                    type="text" placeholder="Booth Name" name="input_boothname">
                 </div>
 
                 <div class="g-mb-30">
                   <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-primary--hover rounded g-py-15 g-px-15"
-                    type="tel" placeholder="Password" name="password">
+                    type="password" placeholder="Password" name="input_password">
                 </div>
 
                 <div class="text-center mb-5">
-                  <button class="btn btn-block u-btn-primary rounded g-py-13" type="button">Log In</button>
+                  <button class="btn btn-block u-btn-primary rounded g-py-13" type="button" id="login">Log In</button>
                 </div>
                 
               </form>
@@ -69,7 +69,7 @@
 
               <footer class="text-center">
                 <p class="g-color-gray-dark-v5 mb-0">Don't have an account?
-                  <a class="g-font-weight-600" href="page-login-8.html">signup</a>
+                  <a class="g-font-weight-600" href="./booth_sign_up.html">signup</a>
                 </p>
               </footer>
             </div>
@@ -165,6 +165,31 @@
   <!-- JS Plugins Init. -->
   <script>
     $(document).on('ready', function () {
+
+      // crowdculus
+      $( "#login" ).on("click", function(){
+        input_boothname = $("#input_boothname").val(); 
+        if(input_boothname == "") swal("Oooops", "You need to fill in everything!", "warning");
+        input_password = $("#input_password").val();
+        if(input_password == "") swal("Oooops", "You need to fill in everything!", "warning");
+
+        //submit and validate
+        $.ajax("/api/booth/login", {
+          method: "POST",
+          data: {
+            boothname: input_boothname,
+            password: input_password
+          }
+        }).done(function(){
+          localStorage.setItem('boothname', input_boothname);
+          localStorage.setItem('authenticated', true);
+          window.location.replace( "/booth.html" );
+        }).fail( function( data ){
+          swal("Ooooops!", data.responseJSON.message, "error");
+          console.log(data);
+        });
+      });
+      
       // initialization of tabs
       $.HSCore.components.HSTabs.init('[role="tablist"]');
 
