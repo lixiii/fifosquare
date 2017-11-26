@@ -177,13 +177,13 @@
         $.ajax("/api/booth/login", {
           method: "POST",
           data: {
-            boothname: input_boothname,
+            username: input_boothname,
             password: input_password
           }
         }).done(function(){
           localStorage.setItem('boothname', input_boothname);
           localStorage.setItem('authenticated', true);
-          window.location.replace( "/booth.html" );
+          window.location.replace( "/booth_view.html" );
         }).fail( function( data ){
           swal("Ooooops!", data.responseJSON.message, "error");
           console.log(data);
