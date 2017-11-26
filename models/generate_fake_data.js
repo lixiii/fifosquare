@@ -8,7 +8,7 @@ var randnorm = require("randgen")
 
 exports.fakeToday = function (io) {
   boothnames = [];
-  for (var i=0; i<200; i++) {
+  for (var i=0; i<100; i++) {
     boothnames.push(generate().spaced);
   }
 
@@ -20,6 +20,6 @@ exports.fakeToday = function (io) {
     boothcontroller.enQ(fakename,
       generate().dashed,
       randomstring.generate({charset: "0123456789", length: 11}),
-      Math.ceil(randnorm.rnorm()*5));
+      Math.max(Math.ceil(randnorm.rnorm()*5)+10),0);
   });
 }
