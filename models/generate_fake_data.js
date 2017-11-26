@@ -4,18 +4,12 @@ var boothcontroller = require("./controllers/booth");
 var masterBoothLedger = require("./masterBoothLedger");
 var randomstring = require("randomstring");
 
-exports.weirdNames() = function() {
+
+exports.fakeToday() = function (io) {
   boothnames = [];
   for (let i=0; i<200; i++) {
     boothnames.push(generate.spaced());
   }
-
-  return boothnames;
-}
-
-
-exports.fakeToday() = function (io) {
-  boothnames = weirdNames();
 
   boothnames.forEach(function(name){
     masterBoothLedger.push({boothname: name,  Q: new Q.Q(io)});
