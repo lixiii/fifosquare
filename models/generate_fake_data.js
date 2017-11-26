@@ -5,7 +5,7 @@ var masterBoothLedger = require("./masterBoothLedger");
 var randomstring = require("randomstring");
 
 
-exports.fakeToday() = function (io) {
+exports.fakeToday = function (io) {
   boothnames = [];
   for (var i=0; i<200; i++) {
     boothnames.push(generate.spaced());
