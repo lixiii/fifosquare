@@ -6,18 +6,12 @@ var app = express();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
 
-
 /**
  * Initialisation 
  */
-
-// Connect to the Crowdculus MongoDB
-mongoose.connect('mongodb://localhost:27017/crowdculus');
-mongoose.Promise = Promise;
-
 // add logging
 app.use(morgan('tiny'))
-
+initialisePassport(app);
 // Use the body-parser package in our application
 app.use(bodyParser.json());
 app.use(
@@ -26,7 +20,9 @@ app.use(
     })
 );
 
-initialisePassport(app);
+// Connect to the Crowdculus MongoDB
+mongoose.connect('mongodb://localhost:27017/crowdculus');
+mongoose.Promise = Promise;
 
 // record of all the event booths and instances of the Qs
 var boothController = require("./models/controllers/booth");
@@ -67,8 +63,6 @@ app.get("/*", function(req, res, next) {
 
 server.listen(80);
 
-
-
 // helper functions to improve readability
 function initialisePassport(app) {
   // initialise passport
@@ -89,23 +83,11 @@ function initialisePassport(app) {
   app.use(passport.initialize());
   app.use(passport.session());
 
-  passport.use(new localStrategy({
-      usernameField: "boothname",
-      passwordField: "password"
-      },
-      Booth.authenticate()));
-      
-  // save passport sessions
-  // used to serialize the user for the session
-  passport.serializeUser(function(user, done) {
-      done(null, user.id);
-      // where is this user.id going? Are we supposed to access this anywhere?
-  });
-
-  // used to deserialize the user
-  passport.deserializeUser(function(id, done) {
-      Booth.findById(id, function(err, user) {
-          done(err, user);
-      });
-  });
+  passport.use(new localStrategy(Booth.authenticate()));
+  passport.serializeUser(Booth.serializeUser());
+  passport.deserializeUser(Booth.deserializeUser());
 }
+
+  // generate some fake data for today's presentation
+  var fakedata = require("./models/generate_fake_data");
+  fakedata.fakeToday(io);

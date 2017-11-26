@@ -1,7 +1,7 @@
 var generate = require('project-name-generator');
-var Q = require("../Q");
-var boothcontroller = require("booth");
-var masterBoothLedger = require("../masterBoothLedger");
+var Q = require("./Q");
+var boothcontroller = require("./controllers/booth");
+var masterBoothLedger = require("./masterBoothLedger");
 var randomstring = require("randomstring");
 
 exports.weirdNames() = function() {

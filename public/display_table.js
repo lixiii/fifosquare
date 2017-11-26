@@ -54,6 +54,57 @@ function tabulate(data, columns) {
     return table;
 }
 
+function parseHistoryData(queueData) {
+    var dayMap = new Map();
+    for(var i = 0; i < queueData.Q; ++i) {
+        var day = queueData.Q[i]["time"].getDate();
+        var hour = queueData.Q[i]["time"].getHours();
+        if (dayMap.has(day)){
+            if (dayMap.get(day).has(hours)){
+                dayMap.get(day).get(hours).push(queueData.Q[i]);
+            } else {
+                var hourMap = new Map();
+                hourMap.set(hour, [queueData.Q[i]]);
+            }
+        } else {
+            var hourMap = new Map();
+            hourMap.set(hour, [queueData.Q[i]]);
+            dayMap.set(day, hourMap);
+        }
+    }
+    var rows = [];
+    dayMap.forEach(function (hourMaps, day, map){
+        var dayTotal = 0;
+        var leastHour = 0;
+        var mostHour = 0;
+        var leastHourAmount = 1000000;
+        var mostHourAmount = 0;
+        for (var hour in hourMaps) {
+            var hourTotal = 0;
+            for (var i = 0; i < hourMaps.get(hour).length; ++i){
+                hourTotal += hourMaps.get(hour)[i].groupsize;
+            }
+            dayTotal += hourTotal;
+            if (hourTotal >= mostHourAmount) {
+                mostHour = hour;
+                mostHourAmount = hourTotal;
+            }
+            if (hourTotal <= leastHourAmount){
+                leastHour = hour;
+                leastHourAmount = hourTotal;
+            }
+        }
+        var row = {
+            Date: day,
+            Total: dayTotal,
+            Rush_hour: mostHour,
+            Slack_hour: leastHour
+        };
+        rows.push(row);
+    });
+    return rows;
+}
+
 function displayhottest(hottest) {
     var text = ""
     for (var i = 0; i < hottest.length; i++) {

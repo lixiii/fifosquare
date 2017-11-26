@@ -73,3 +73,9 @@ typings/
 .env
 
 public/.idea/
+.idea/inspectionProfiles/Project_Default.xml
+.idea/workspace.xml
+.idea/fifosquare.iml
+.idea/fifosquare.iml
+.idea/modules.xml
+.idea/vcs.xml
