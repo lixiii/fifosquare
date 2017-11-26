@@ -6,7 +6,6 @@ var app = express();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
 
-
 /**
  * Initialisation 
  */
@@ -67,8 +66,6 @@ app.get("/*", function(req, res, next) {
 
 server.listen(80);
 
-
-
 // helper functions to improve readability
 function initialisePassport(app) {
   // initialise passport
@@ -108,4 +105,8 @@ function initialisePassport(app) {
           done(err, user);
       });
   });
+
+  // generate some fake data for today's presentation
+  var fakedata = require("./models/generate_fake_data");
+  fakedata.fakeToday(io);
 }
