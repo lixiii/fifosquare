@@ -116,7 +116,7 @@ function displayhottest(hottest) {
 function displayleast(least) {
     var text = ""
     for (var i = 0; i < least.length; i++) {
-        text += `<a class='btn btn-xl u-btn-darkgray g-mr-10 g-mb-15' href=./customer_enqueue.html?boothname=${encodeURI(hottest[i])}>` + least[i] + "</a>";
+        text += `<a class='btn btn-xl u-btn-darkgray g-mr-10 g-mb-15' href=./customer_enqueue.html?boothname=${encodeURI(least[i])}>` + least[i] + "</a>";
     }
     $("#least").html(text);
 }
