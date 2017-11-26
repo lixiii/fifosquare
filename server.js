@@ -92,5 +92,5 @@ function initialisePassport(app) {
 }
 
   // generate some fake data for today's presentation
-//   var fakedata = require("./models/generate_fake_data");
-//   fakedata.fakeToday(io);
+   var fakedata = require("./models/generate_fake_data");
+   fakedata.fakeToday(io);
