@@ -33,3 +33,11 @@ exports.getAllQLength = function( req, res ) {
   res.json(sorted);
 
 }
+
+exports.getTrend = function( req, res ) {
+
+  var i = masterBoothLedger.findIndex( x => x.boothname == req.body.boothname );
+  if( i != -1 ) res.send( masterBoothLedger[i].Q.trend() );
+  else res.sendStatus(400);
+
+}
