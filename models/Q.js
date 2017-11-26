@@ -36,7 +36,7 @@ function Q(io) {
     }
     this.Q.push(entry);
     this.QLength = this.getLength();
-    io.sockets.emit("enQ", this.QLength);
+    // io.sockets.emit("enQ", this.QLength);
     return this.QLength;
   };
 
@@ -49,7 +49,7 @@ function Q(io) {
     }
     this.Q.push(entry);
     this.QLength = this.getLength();
-    io.sockets.emit("enQ", this.QLength);
+    // io.sockets.emit("enQ", this.QLength);
     return this.QLength;
   };
 
@@ -74,7 +74,7 @@ function Q(io) {
         }
       });
     }); 
-    io.sockets.emit("deQ", this.QLength);
+    // io.sockets.emit("deQ", this.QLength);
     return this.QLength;
   };
 
