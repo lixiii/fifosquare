@@ -6,7 +6,7 @@ var randomstring = require("randomstring");
 
 exports.weirdNames() = function() {
   boothnames = [];
-  for (let i=0; i<200; i++) {
+  for (var i=0; i<200; i++) {
     boothnames.push(generate.spaced());
   }
 
