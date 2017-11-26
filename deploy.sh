@@ -1,0 +1,1 @@
+rsync -au  -r ./public/ ubuntu@ox.crowdculus.com:~/fifosquare/public/
