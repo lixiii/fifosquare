@@ -45,6 +45,9 @@ var QRoutes = require("./routes/Q");
 app.use('/api', router);
 
 router.post('/booth', boothRoutes.createBooth);
+router.post('/booth/login', boothRoutes.login);
+router.get('booth/success', boothRoutes.success);
+router.get('/booth/fail', boothRoutes.fail);
 router.get('/booths', boothRoutes.getBooths);
 
 router.put('/queue', QRoutes.enQ);

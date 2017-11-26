@@ -39,6 +39,20 @@ exports.createBooth = function (req, res) {
   })
 };
 
+//Authentication
+exports.login = passport.authenticate("local", {
+  successRedirect: "/booth/success",
+  failureRedirect: "/booth/fail"
+}), function(req,res){
+};
+
+exports.fail = function(req,res) {
+  res.status(401).send({"LoggedIn":false});
+}
+exports.success = function(req,res) {
+  res.status(200).send({"LoggedIn":true});
+}
+
 // Create endpoint /api/booths for GET
 exports.getBooths = function (req, res) {
 
