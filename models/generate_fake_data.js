@@ -18,11 +18,15 @@ exports.fakeToday = function (io) {
   });
 
   boothnames.forEach(function(fakename) {
+    var faketime = new Date();
+    faketime.setHours(Math.min(Math.abs(Math.floor(randnorm.rnorm()*60)), 59));
+    faketime.setMinutes(Math.min(Math.abs(Math.floor(randnorm.rnorm()*60)), 59));
+
     boothcontroller.enQFake(fakename,
       generate().dashed,
       randomstring.generate({charset: "0123456789", length: 11}),
-      Math.max(Math.ceil(randnorm.rnorm()*3)+10, 0),
-    );
+      Math.max(Math.ceil(randnorm.rnorm()*3)+10, 0), 
+      faketime);
   });
 }
 
