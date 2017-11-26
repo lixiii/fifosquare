@@ -147,9 +147,9 @@
 
 
       // check localStorage
-      if( localStorage.getItem("_user" !== null ) ) $("#input_name").val( localStorage.getItem("_user") )
-      if( localStorage.getItem("_phonenumber" !== null ) ) $("#input_phone").val( localStorage.getItem("_phonenumber") )
-      if( localStorage.getItem("_groupsize" !== null ) ) $("#input_group_size").val( localStorage.getItem("_groupsize") )
+      if( localStorage.getItem("_user") !== null  ) $("#input_name").val( localStorage.getItem("_user") )
+      if( localStorage.getItem("_phonenumber") !== null  ) $("#input_phone").val( localStorage.getItem("_phonenumber") )
+      if( localStorage.getItem("_groupsize") !== null  ) $("#input_group_size").val( localStorage.getItem("_groupsize") )
 
       // crowdculus
       $( "#confirmQ" ).on( "click", function() {
