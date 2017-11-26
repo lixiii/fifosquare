@@ -29,5 +29,3 @@ exports.fakeToday = function (io) {
       faketime);
   });
 }
-
-exports
