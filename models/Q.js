@@ -57,14 +57,23 @@ function Q(io) {
   this.deQ = function() {
     this.Q.pop();
     this.QLength = this.getLength();
-    var num = this.Q[notificationLength].phonenumber;
+    var num = [];
+    if (QLength < notificationLength+1) {
+      Q.forEach(entry => {
+        num.push(entry.phonenumber);
+      })
+    } else {
+      num.push(this.Q[notificationLength].phonenumber);
+    }
     console.log("I Just sent a message!")
-    awsController.publish(num, "Thank you very much", function(data) {
-      if (data !== null) {
-        console.log('sent');
-        console.log(data)
-      }
-    });
+    num.forEach(num => {
+      awsController.publish(num, "Thank you very much", function(data) {
+        if (data !== null) {
+          console.log('sent');
+          console.log(data)
+        }
+      });
+    }); 
     io.sockets.emit("deQ", this.QLength);
     return this.QLength;
   };
