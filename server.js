@@ -50,6 +50,7 @@ router.put('/queue', QRoutes.enQ);
 router.delete('/queue', QRoutes.deQ);
 
 router.get("/allqlength", QRoutes.getAllQLength);
+router.post("/trend", QRoutes.getTrend);
 
 
 // Serve static contents and Start the server
