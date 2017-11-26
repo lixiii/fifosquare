@@ -7,7 +7,7 @@ var randomstring = require("randomstring");
 
 exports.fakeToday() = function (io) {
   boothnames = [];
-  for (let i=0; i<200; i++) {
+  for (var i=0; i<200; i++) {
     boothnames.push(generate.spaced());
   }
 
