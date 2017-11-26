@@ -20,6 +20,6 @@ exports.fakeToday = function (io) {
     boothcontroller.enQ(fakename,
       generate().dashed,
       randomstring.generate({charset: "0123456789", length: 11}),
-      Math.max(Math.ceil(randnorm.rnorm()*5)+10),0);
+      Math.max(Math.ceil(randnorm.rnorm()*5)+10,0));
   });
 }
