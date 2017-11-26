@@ -56,7 +56,7 @@ router.get("/allqlength", QRoutes.getAllQLength);
 // Serve static contents and Start the server
 app.get("/*", function(req, res, next) {
   var uid = req.params.uid,
-      path = req.params[0] ? req.params[0] : "index.html";
+      path = req.params[0] ? req.params[0] : "customer_view.html";
   //Development mode
   res.sendFile(path, { root: "public" });
   //next();

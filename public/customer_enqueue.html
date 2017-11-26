@@ -46,17 +46,46 @@
    }' data-offset-top="400" data-compensation="#js-header" data-show-effect="zoomIn">
       <i class="hs-icon hs-icon-arrow-top"></i>
     </a>
-         
+
     <!-- Banners -->
     <div class="row align-items-stretch">
       <div class="col-lg-12 g-mb-30">
         <!-- Article -->
         <article class="text-center g-color-white g-overflow-hidden">
-          <div class="u-block-hover--scale g-min-height-200 g-flex-middle g-bg-cover g-bg-size-cover g-bg-bluegray-opacity-0_3--after g-transition-0_5" data-bg-img-src="https://www.yaylife.com/wp-content/uploads/2011/06/M96.jpg" style="background-image: url('https://www.yaylife.com/wp-content/uploads/2011/06/M96.jpg');"  id="hundred">
+          <div class="u-block-hover--scale g-min-height-200 g-flex-middle g-bg-cover g-bg-size-cover g-bg-bluegray-opacity-0_3--after g-transition-0_5" data-bg-img-src="https://www.yaylife.com/wp-content/uploads/2011/06/M96.jpg" style="background-image: url('https://www.yaylife.com/wp-content/uploads/2011/06/M96.jpg');"
+            id="hundred">
             <div class="g-flex-middle-item g-pos-rel g-z-index-1 g-py-50 g-px-20">
-              <h3 class="text-uppercase">YOU ARE QUEUEING FOR <BOOTHNAME></BOOTHNAME></h3>
+              <h3 class="text-uppercase">YOU ARE QUEUEING FOR
+                <boothname></boothname>
+              </h3>
               <hr class="g-brd-3 g-brd-white g-width-30 g-my-20">
-              <a class="btn btn-md u-btn-outline-white g-font-weight-600 g-font-size-11 text-uppercase" href="#!">YES</a>
+
+              <!-- Form -->
+              <div class="row">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-8 text-center">
+                  <form id="booth" class="g-py-15">
+                    <div class="mb-4">
+                      <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-primary--hover rounded g-py-15 g-px-15" type="text" placeholder="Your name / nickname" id="input_name">
+                    </div>
+
+                    <div class="mb-4">
+                      <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-primary--hover rounded g-py-15 g-px-15" type="number" placeholder="Phone number" id="input_phone">
+                    </div>
+
+                    <div class="g-mb-30">
+                      <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-primary--hover rounded g-py-15 g-px-15" type="number" placeholder="Group size" id="input_groupsize">
+                    </div>
+
+                    <div class="text-center mb-5">
+                      <button class="btn btn-block u-btn-primary rounded g-py-13 g-font-weight-600 g-font-size-11 text-uppercase" id="confirmQ" type="button" >Yes! Queue me up!</button>
+                    </div>
+
+                  </form>
+                  <!-- End Form -->
+                </div>
+                <div class="col-sm-2"></div>
+              </div>
             </div>
           </div>
         </article>
@@ -64,7 +93,7 @@
       </div>
     </div>
     <!-- End Banners -->
-    
+
   </main>
 
   <div class="u-outer-spaces-helper"></div>
@@ -96,33 +125,37 @@
 
   <!-- JS Plugins Init. -->
   <script>
-    $(document).on('ready', function () {
-      document.getElementById("hundred").style.height = String(window.innerHeight) + "px";
+    window.boothname = findGetParameter( "boothname" );
+    $( document ).on( 'ready', function() {
+      document.getElementById( "hundred" ).style.height = String( window.innerHeight ) + "px";
       // initialization of tabs
-      $.HSCore.components.HSTabs.init('[role="tablist"]');
+      $.HSCore.components.HSTabs.init( '[role="tablist"]' );
 
       // initialization of go to
-      $.HSCore.components.HSGoTo.init('.js-go-to');
-    });
+      $.HSCore.components.HSGoTo.init( '.js-go-to' );
 
-    $(window).on('load', function () {
+      // update boothname
+      $( "boothname" )[ 0 ].innerText = window.boothname;
+    } );
+
+    $( window ).on( 'load', function() {
       // initialization of header
-      $.HSCore.components.HSHeader.init($('#js-header'));
-      $.HSCore.helpers.HSHamburgers.init('.hamburger');
+      $.HSCore.components.HSHeader.init( $( '#js-header' ) );
+      $.HSCore.helpers.HSHamburgers.init( '.hamburger' );
 
       // initialization of HSMegaMenu component
-      $('.js-mega-menu').HSMegaMenu({
+      $( '.js-mega-menu' ).HSMegaMenu( {
         event: 'hover',
-        pageContainer: $('.container'),
+        pageContainer: $( '.container' ),
         breakpoint: 991
-      });
-    });
+      } );
+    } );
 
-    $(window).on('resize', function () {
-      setTimeout(function () {
-        $.HSCore.components.HSTabs.init('[role="tablist"]');
-      }, 200);
-    });
+    $( window ).on( 'resize', function() {
+      setTimeout( function() {
+        $.HSCore.components.HSTabs.init( '[role="tablist"]' );
+      }, 200 );
+    } );
   </script>
 </body>
 
