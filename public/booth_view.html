@@ -10,6 +10,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
 
+  <style>
+    /* set the CSS */
+
+    rect.bar {
+      fill: steelblue;
+    }
+  </style>
+
   <!-- Favicon -->
   <link rel="shortcut icon" href="../../favicon.ico">
   <!-- Google Fonts -->
@@ -42,8 +50,11 @@
         <div class="row d-flex justify-content-center align-content-end flex-wrap g-min-height-500">
           <div class="col-lg-7 mt-auto">
             <div class="mb-5">
-              <h1 class="g-color-white g-font-weight-600 g-mb-30"><BOOTHNAME></BOOTHNAME>BOOTH-NAME @ HackOxford </h1>
-              <p class="lead g-color-white-opacity-0_6">Booth description placeholder.<BOOTHDESCRIPTION></BOOTHDESCRIPTION></p>
+              <h1 class="g-color-white g-font-weight-600 g-mb-30">
+                <boothname></boothname> @ HackOxford </h1>
+              <p class="lead g-color-white-opacity-0_6">Booth description placeholder.
+                <BOOTHDESCRIPTION></BOOTHDESCRIPTION>
+              </p>
             </div>
           </div>
         </div>
@@ -68,7 +79,11 @@
 
           <div class="g-mb-60">
             <h2 class="g-color-black g-font-weight-600 text-center g-mb-30">Today</h2>
-            <p><span class="d-inline-block float-left g-width-60 g-height-60 g-color-black g-font-weight-600 g-font-size-30 text-center g-pa-7 mr-2"></span>placeholder</p>
+            <div class='row'>
+              <div class='col-12' id ="chartLoc">
+                <todayChart></todayChart>
+              </div>
+            </div>
           </div>
 
           <div class="g-mb-60">
@@ -101,6 +116,7 @@
   <!-- JS Implementing Plugins -->
   <script src="./assets/vendor/hs-megamenu/src/hs.megamenu.js"></script>
   <script src="./assets/vendor/fancybox/jquery.fancybox.min.js"></script>
+  <script src="//d3js.org/d3.v4.min.js"></script>
 
   <!-- JS Unify -->
   <script src="./assets/js/hs.core.js"></script>
@@ -115,35 +131,37 @@
 
   <!-- JS Plugins Init. -->
   <script>
-    $(document).on('ready', function () {
-        // initialization of tabs
-        $.HSCore.components.HSTabs.init('[role="tablist"]');
+    $( document ).on( 'ready', function() {
+      // initialization of tabs
+      $.HSCore.components.HSTabs.init( '[role="tablist"]' );
 
-        // initialization of popups
-        $.HSCore.components.HSPopup.init('.js-fancybox');
+      // initialization of popups
+      $.HSCore.components.HSPopup.init( '.js-fancybox' );
 
-        // initialization of go to
-        $.HSCore.components.HSGoTo.init('.js-go-to');
-      });
+      // initialization of go to
+      $.HSCore.components.HSGoTo.init( '.js-go-to' );
 
-      $(window).on('load', function () {
-        // initialization of header
-        $.HSCore.components.HSHeader.init($('#js-header'));
-        $.HSCore.helpers.HSHamburgers.init('.hamburger');
+      document.getElementsByTagName("boothname")[0].innerHTML = localStorage.getItem("boothname");
+    } );
 
-        // initialization of HSMegaMenu component
-        $('.js-mega-menu').HSMegaMenu({
-          event: 'hover',
-          pageContainer: $('.container'),
-          breakpoint: 991
-        });
-      });
+    $( window ).on( 'load', function() {
+      // initialization of header
+      $.HSCore.components.HSHeader.init( $( '#js-header' ) );
+      $.HSCore.helpers.HSHamburgers.init( '.hamburger' );
 
-      $(window).on('resize', function () {
-        setTimeout(function () {
-          $.HSCore.components.HSTabs.init('[role="tablist"]');
-        }, 200);
-      });
+      // initialization of HSMegaMenu component
+      $( '.js-mega-menu' ).HSMegaMenu( {
+        event: 'hover',
+        pageContainer: $( '.container' ),
+        breakpoint: 991
+      } );
+    } );
+
+    $( window ).on( 'resize', function() {
+      setTimeout( function() {
+        $.HSCore.components.HSTabs.init( '[role="tablist"]' );
+      }, 200 );
+    } );
   </script>
   <script type='text/javascript' src='data_presentation.js'></script>
 </body>
