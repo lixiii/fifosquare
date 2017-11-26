@@ -50,7 +50,7 @@ router.get('/booths', boothRoutes.getBooths);
 router.put('/queue', QRoutes.enQ);
 router.delete('/queue', QRoutes.deQ);
 
-router.get("/hottest", QRoutes.hottest);
+router.get("/allqlength", QRoutes.getAllQLength);
 
 
 // Serve static contents and Start the server

@@ -1,23 +1,37 @@
-data = [
-    { "Booth": "something", "QLength": 10 },
-    { "Booth": "another", "QLength": 15 },
-    { "Booth": "also", "QLength": 20 }
-]
+data = [];
+hottest = [];
+least = [];
 
-hottest = ["something", "another", "hot"]
-least = ["something", "another", "hot"]
+$(document).on('ready', function () {
+
+    $.ajax( "/api/allqlength", {
+        method: "GET"
+    } ).done( function(data) {
+        hottest = [ data[0].boothname, data[1].boothname, data[2].boothname ];
+        displayhottest(hottest);
+        data = data;
+        tabulate(data, ['boothname', 'QLength']);
+        for(var i = data.length - 1; i > Math.max(data.length - 4,0); i --) {
+            least.push( data[i].boothname );
+        }
+        displayleast(least);
+    });
+
+});
 
 function tabulate(data, columns) {
     var table = d3.select('#chart').append('table').attr('class', "table table-striped u-table--v1 mb-0")
     var thead = table.append('thead')
     var tbody = table.append('tbody');
 
+    var header = ["Booth name", "Queue Length"];
+
     // append the header row
     thead.append('tr')
         .selectAll('th')
-        .data(columns).enter()
+        .data(header).enter()
         .append('th')
-        .text(function (column) { return column; });
+        .text(function (header) { return header; });
 
     // create a row for each object in the data
     var rows = tbody.selectAll('tr')
@@ -49,12 +63,12 @@ function displayhottest(hottest) {
 
 function displayleast(least) {
     var text = ""
-    for (var i = 0; i < hottest.length; i++) {
-        text += "<span class=\"u-label g-bg-primary u-label--lg g-px-15 g-py-8 g-mr-10 g-mb-15\">" + hottest[i] + "</span>";
+    for (var i = 0; i < least.length; i++) {
+        text += "<span class=\"u-label g-bg-primary u-label--lg g-px-15 g-py-8 g-mr-10 g-mb-15\">" + least[i] + "</span>";
     }
     $("#least").html(text);
 }
 
-tabulate(data, ['Booth', 'QLength']); // 2 column table
-displayhottest(hottest);
-displayleast(least);
+// tabulate(data, ['Booth', 'QLength']); // 2 column table
+// displayhottest(hottest);
+// displayleast(least);

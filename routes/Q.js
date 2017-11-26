@@ -18,7 +18,7 @@ exports.deQ = function( req, res ) {
     res.sendStatus(400);
 }
 
-exports.hottest = function( req, res ) {
+exports.getAllQLength = function( req, res ) {
 
   var sorted = masterBoothLedger.map( x => {
     return { boothname: x.boothname, QLength: x.Q.QLength } 
