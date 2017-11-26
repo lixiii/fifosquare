@@ -8,7 +8,7 @@ var randomstring = require("randomstring");
 exports.fakeToday = function (io) {
   boothnames = [];
   for (var i=0; i<200; i++) {
-    boothnames.push(generate.spaced());
+    boothnames.push(generate.spaced);
   }
 
   boothnames.forEach(function(name){
@@ -17,8 +17,8 @@ exports.fakeToday = function (io) {
 
   boothnames.forEach(function(fakename) {
     boothcontroller.enQ(fakename,
-      generate.dashed(),
-      randomString.genearte({charset: "0123456789", length: 11}),
+      generate.dashed,
+      randomstring.generate({charset: "0123456789", length: 11}),
       Math.ceil(rnorm()*5));
   });
 }
