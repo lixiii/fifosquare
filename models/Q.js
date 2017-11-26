@@ -58,8 +58,8 @@ function Q(io) {
     this.Q.pop();
     this.QLength = this.getLength();
     var num = [];
-    if (QLength < notificationLength+1) {
-      Q.forEach(entry => {
+    if (this.QLength < notificationLength+1) {
+      this.Q.forEach(entry => {
         num.push(entry.phonenumber);
       })
     } else {
