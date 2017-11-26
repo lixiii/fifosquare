@@ -45,12 +45,14 @@ router.post('/booth/login', boothRoutes.login);
 router.get('booth/success', boothRoutes.success);
 router.get('/booth/fail', boothRoutes.fail);
 router.get('/booths', boothRoutes.getBooths);
+router.get("/fakeboothdata", boothRoutes.fakeBoothData);
 
 router.put('/queue', QRoutes.enQ);
 router.delete('/queue', QRoutes.deQ);
 
 router.get("/allqlength", QRoutes.getAllQLength);
 router.post("/trend", QRoutes.getTrend);
+
 
 
 // Serve static contents and Start the server
