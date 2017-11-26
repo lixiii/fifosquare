@@ -48,8 +48,15 @@ function tabulate(data, columns) {
         })
         .enter()
         .append('td')
+        .append("a")
         .text(function (d) { return d.value; })
-        .attr("xlink:href", "./customer_enqueue.html");
+        .each( function(d) {
+            var elem = d3.select(this);
+            if(d.column == "boothname") {
+                elem.attr("href", `/customer_enqueue.html?boothname=${encodeURI(d.value)}`);
+            }
+        });
+        
 
     return table;
 }

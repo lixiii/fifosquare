@@ -1,7 +1,10 @@
 // io is the io object initialised in server.js
+var awsController = require("../routes/aws")
+
 function Q(io) {
   this.Q = [];
   this.QLength = 0;
+  const notificationLength = 2;
 
   
   this.getLength = function() {
@@ -53,7 +56,24 @@ function Q(io) {
 
   this.deQ = function() {
     this.Q.pop();
-    tthis.QLength = this.getLength();
+    this.QLength = this.getLength();
+    var num = [];
+    if (this.QLength < notificationLength+1) {
+      this.Q.forEach(entry => {
+        num.push(entry.phonenumber);
+      })
+    } else {
+      num.push(this.Q[notificationLength].phonenumber);
+    }
+    console.log("I Just sent a message!")
+    num.forEach(num => {
+      awsController.publish(num, "Thank you very much", function(data) {
+        if (data !== null) {
+          console.log('sent');
+          console.log(data)
+        }
+      });
+    }); 
     io.sockets.emit("deQ", this.QLength);
     return this.QLength;
   };
