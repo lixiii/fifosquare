@@ -56,7 +56,7 @@ function tabulate(data, columns) {
 
 function parseHistoryData(queueData) {
     var dayMap = new Map();
-    for(var i = 0; i < queueData.Q; ++i) {
+    for(var i = 0; i < queueData.Q.getLength; ++i) {
         var day = queueData.Q[i]["time"].getDate();
         var hour = queueData.Q[i]["time"].getHours();
         if (dayMap.has(day)){
