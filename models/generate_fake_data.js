@@ -3,6 +3,7 @@ var Q = require("./Q");
 var boothcontroller = require("./controllers/booth");
 var masterBoothLedger = require("./masterBoothLedger");
 var randomstring = require("randomstring");
+var randnorm = require("randgen")
 
 
 exports.fakeToday = function (io) {
@@ -19,6 +20,6 @@ exports.fakeToday = function (io) {
     boothcontroller.enQ(fakename,
       generate.dashed,
       randomstring.generate({charset: "0123456789", length: 11}),
-      Math.ceil(rnorm()*5));
+      Math.ceil(randnorm.rnorm()*5));
   });
 }
