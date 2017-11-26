@@ -42,14 +42,17 @@ app.use('/api', router);
 
 router.post('/booth', boothRoutes.createBooth);
 router.post('/booth/login', boothRoutes.login);
-router.get('booth/success', boothRoutes.success);
+router.get('/booth/success', boothRoutes.success);
 router.get('/booth/fail', boothRoutes.fail);
 router.get('/booths', boothRoutes.getBooths);
+router.post("/fakeboothdata", boothRoutes.fakeBoothData);
 
 router.put('/queue', QRoutes.enQ);
 router.delete('/queue', QRoutes.deQ);
 
 router.get("/allqlength", QRoutes.getAllQLength);
+router.post("/trend", QRoutes.getTrend);
+
 
 
 // Serve static contents and Start the server

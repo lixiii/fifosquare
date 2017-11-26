@@ -36,7 +36,7 @@ function Q(io) {
     }
     this.Q.push(entry);
     this.QLength = this.getLength();
-    io.sockets.emit("enQ", this.QLength);
+    // io.sockets.emit("enQ", this.QLength);
     return this.QLength;
   };
 
@@ -49,7 +49,7 @@ function Q(io) {
     }
     this.Q.push(entry);
     this.QLength = this.getLength();
-    io.sockets.emit("enQ", this.QLength);
+    // io.sockets.emit("enQ", this.QLength);
     return this.QLength;
   };
 
@@ -58,23 +58,25 @@ function Q(io) {
     this.Q.pop();
     this.QLength = this.getLength();
     var num = [];
+    var usr = [];
     if (this.QLength < notificationLength+1) {
       this.Q.forEach(entry => {
         num.push(entry.phonenumber);
+        usr.push(entry.user);
       })
     } else {
       num.push(this.Q[notificationLength].phonenumber);
     }
     console.log("I Just sent a message!")
-    num.forEach(num => {
-      awsController.publish(num, "It is about your turn, "+user+", please proceed to the booth now. Thank you.", function(data) {
+    num.forEach( (num, i) => {
+      awsController.publish(num, `Hi ${usr[i]}, it is about your turn,  please proceed to the booth now. Thank you!`, function(data) {
         if (data !== null) {
           console.log('sent');
           console.log(data)
         }
       });
     }); 
-    io.sockets.emit("deQ", this.QLength);
+    // io.sockets.emit("deQ", this.QLength);
     return this.QLength;
   };
 

@@ -30,6 +30,22 @@ exports.fakeToday = function (io) {
   });
 }
 
+exports.fakeBoothData = function( boothname ) {
+
+  for(var j = 0; j < 10; j ++) {
+    var faketime = new Date();
+    faketime.setHours(Math.min(Math.abs(Math.floor(randnorm.rnorm()*60)), 59));
+    faketime.setMinutes(Math.min(Math.abs(Math.floor(randnorm.rnorm()*60)), 59));
+  
+    boothcontroller.enQFake(boothname,
+      generate().dashed,
+      randomstring.generate({charset: "0123456789", length: 11}),
+      Math.max(1), 
+      faketime);
+  }
+  
+}
+
 exports.fakeTable = function (io) {
   
   boothnames.forEach(function(fakename) {

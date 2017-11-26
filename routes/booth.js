@@ -2,6 +2,10 @@
 var Booth = require('../models/booth');
 var passport = require('passport');
 const crypto = require('crypto');
+var masterBoothLedger = require("../models/masterBoothLedger");
+var fake = require("../models/generate_fake_data");
+var Q = require("../models/Q");
+
 /**
  * Create endpoint /api/booth for POST
  * @export
@@ -25,6 +29,10 @@ exports.createBooth = function (req, res) {
       console.error(err);
       res.json({"add":false});
     } else {
+      masterBoothLedger.push({
+        boothname: req.body.boothname,
+        Q: new Q.Q({})
+      });
       res.json({"add":true});
     }
   });
@@ -85,6 +93,11 @@ exports.getBooths = function (req, res) {
 
 // }
 
+
+exports.fakeBoothData = function(req, res) {
+  fake.fakeBoothData( req.body.boothname );
+  res.sendStatus(200);
+}
 
 function validateEmail(email) {
   var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
