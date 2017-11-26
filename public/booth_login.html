@@ -52,12 +52,12 @@
               <form id="booth" class="g-py-15">
                 <div class="mb-4">
                   <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-primary--hover rounded g-py-15 g-px-15"
-                    type="text" placeholder="Booth Name" name="input_boothname">
+                    type="text" placeholder="Booth Name" id="input_boothname">
                 </div>
 
                 <div class="g-mb-30">
                   <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-primary--hover rounded g-py-15 g-px-15"
-                    type="password" placeholder="Password" name="input_password">
+                    type="password" placeholder="Password" id="input_password">
                 </div>
 
                 <div class="text-center mb-5">
@@ -210,7 +210,8 @@
   <script src="./assets/vendor/dzsparallaxer/dzsparallaxer.js"></script>
   <script src="./assets/vendor/dzsparallaxer/dzsscroller/scroller.js"></script>
   <script src="./assets/vendor/dzsparallaxer/advancedscroller/plugin.js"></script>
-
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  
   <!-- JS Unify -->
   <script src="./assets/js/hs.core.js"></script>
   <script src="./assets/js/components/hs.header.js"></script>
@@ -244,7 +245,7 @@
           localStorage.setItem('authenticated', true);
           window.location.replace("/booth_view.html");
         }).fail(function (data) {
-          swal("Ooooops!", data.responseJSON.message, "error");
+          swal("Ooooops!", "Something went wrong. Check you details?", "error");
           console.log(data);
         });
       });
