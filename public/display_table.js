@@ -48,7 +48,8 @@ function tabulate(data, columns) {
         })
         .enter()
         .append('td')
-        .text(function (d) { return d.value; });
+        .text(function (d) { return d.value; })
+        .attr("xlink:href", "./customer_enqueue.html");
 
     return table;
 }
@@ -56,7 +57,7 @@ function tabulate(data, columns) {
 function displayhottest(hottest) {
     var text = ""
     for (var i = 0; i < hottest.length; i++) {
-        text += "<span class=\"u-label g-bg-primary u-label--lg g-px-15 g-py-8 g-mr-10 g-mb-15\">" + hottest[i] + "</span>";
+        text += "<span class=\"u-label g-bg-primary u-label--lg g-px-15 g-py-8 g-mr-10 g-mb-15\"><a href=\"./customer_enqueue.html\">" + hottest[i] + "</a></span>";
     }
     $("#hottest").html(text);
 }
@@ -64,11 +65,11 @@ function displayhottest(hottest) {
 function displayleast(least) {
     var text = ""
     for (var i = 0; i < least.length; i++) {
-        text += "<span class=\"u-label g-bg-primary u-label--lg g-px-15 g-py-8 g-mr-10 g-mb-15\">" + least[i] + "</span>";
+        text += "<span class=\"u-label g-bg-primary u-label--lg g-px-15 g-py-8 g-mr-10 g-mb-15\"><a href=\"./customer_enqueue.html\">" + least[i] + "</a></span>";
     }
     $("#least").html(text);
 }
 
-// tabulate(data, ['Booth', 'QLength']); // 2 column table
+//tabulate(data, ['Booth', 'QLength']); // 2 column table
 // displayhottest(hottest);
 // displayleast(least);
