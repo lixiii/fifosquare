@@ -8,7 +8,7 @@ function Q(io) {
     var sum = 0;
     this.Q.forEach(function(element) {
       sum += element.groupsize;
-    });s
+    });
  
     return sum;
   };
@@ -48,7 +48,7 @@ function Q(io) {
 
   this.trend = function() {
     data_points = [];
-    this.Q.forEach(function(element){
+    this.Q.forEach(element => {
       var entry = {
         time: this.formatToday(element.time),
         data: element.groupsize,
