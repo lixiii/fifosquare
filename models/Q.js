@@ -67,7 +67,7 @@ function Q(io) {
     }
     console.log("I Just sent a message!")
     num.forEach(num => {
-      awsController.publish(num, "Thank you very much", function(data) {
+      awsController.publish(num, "It is about your turn, "+user+", please proceed to the booth now. Thank you.", function(data) {
         if (data !== null) {
           console.log('sent');
           console.log(data)
