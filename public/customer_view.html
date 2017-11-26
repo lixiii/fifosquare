@@ -103,6 +103,7 @@
   <script src="./assets/vendor/hs-megamenu/src/hs.megamenu.js"></script>
   <script src="./assets/vendor/fancybox/jquery.fancybox.min.js"></script>
   <script src="https://d3js.org/d3.v4.min.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
 
   <!-- JS Unify -->
   <script src="./assets/js/hs.core.js"></script>
@@ -117,6 +118,7 @@
 
   <!-- JS Plugins Init. -->
   <script>
+    _APILocation = "http://localhost";
     $(document).on('ready', function () {
       // initialization of tabs
       $.HSCore.components.HSTabs.init('[role="tablist"]');
@@ -146,6 +148,9 @@
         $.HSCore.components.HSTabs.init('[role="tablist"]');
       }, 200);
     });
+
+    const socket = io(_APILocation);
+
   </script>
 
   <script type='text/javascript' src='display_table.js'></script>

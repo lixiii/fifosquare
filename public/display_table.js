@@ -57,7 +57,7 @@ function tabulate(data, columns) {
 function displayhottest(hottest) {
     var text = ""
     for (var i = 0; i < hottest.length; i++) {
-        text += "<span class=\"u-label g-bg-primary u-label--lg g-px-15 g-py-8 g-mr-10 g-mb-15\"><a href=\"./customer_enqueue.html\">" + hottest[i] + "</a></span>";
+        text += `<a class='btn btn-xl u-btn-darkgray g-mr-10 g-mb-15' href=./customer_enqueue.html?boothname=${encodeURI(hottest[i])}>` + hottest[i] + "</a>";
     }
     $("#hottest").html(text);
 }
@@ -65,7 +65,7 @@ function displayhottest(hottest) {
 function displayleast(least) {
     var text = ""
     for (var i = 0; i < least.length; i++) {
-        text += "<span class=\"u-label g-bg-primary u-label--lg g-px-15 g-py-8 g-mr-10 g-mb-15\"><a href=\"./customer_enqueue.html\">" + least[i] + "</a></span>";
+        text += `<a class='btn btn-xl u-btn-darkgray g-mr-10 g-mb-15' href=./customer_enqueue.html?boothname=${encodeURI(hottest[i])}>` + least[i] + "</a>";
     }
     $("#least").html(text);
 }
