@@ -37,6 +37,19 @@ function Q(io) {
     return this.QLength;
   };
 
+  this.enQFake = function(user, phonenumber, groupsize, time) {
+    var entry = {
+      user: user,
+      phonenumber: phonenumber,
+      groupsize : groupsize,
+      time: time,
+    }
+    this.Q.push(entry);
+    this.QLength = this.getLength();
+    io.sockets.emit("enQ", this.QLength);
+    return this.QLength;
+  };
+
 
   this.deQ = function() {
     this.Q.pop();

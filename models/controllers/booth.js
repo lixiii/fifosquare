@@ -30,6 +30,14 @@
     return null;
  }
 
+ exports.enQFake = function( boothname, user, phonenumber, groupsize, time ) {
+  var i = masterBoothLedger.findIndex( x => x.boothname == boothname );
+  if( i != -1)
+    return masterBoothLedger[i].Q.enQFake( user, phonenumber, groupsize );
+  else
+    return null;
+ }
+
  exports.deQ = function( boothname ) {
   var i = masterBoothLedger.findIndex( x => x.boothname == boothname );
   if( i != -1)

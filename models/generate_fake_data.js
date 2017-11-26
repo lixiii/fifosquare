@@ -4,6 +4,7 @@ var boothcontroller = require("./controllers/booth");
 var masterBoothLedger = require("./masterBoothLedger");
 var randomstring = require("randomstring");
 var randnorm = require("randgen")
+var momentRandom = require('moment-random');
 
 
 exports.fakeToday = function (io) {
@@ -17,9 +18,12 @@ exports.fakeToday = function (io) {
   });
 
   boothnames.forEach(function(fakename) {
-    boothcontroller.enQ(fakename,
+    boothcontroller.enQFake(fakename,
       generate().dashed,
       randomstring.generate({charset: "0123456789", length: 11}),
-      Math.max(Math.ceil(randnorm.rnorm()*10)+10, 0));
+      Math.max(Math.ceil(randnorm.rnorm()*3)+10, 0),
+    );
   });
 }
+
+exports
